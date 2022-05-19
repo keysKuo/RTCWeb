@@ -1,3 +1,113 @@
-<div id="video-grid">
+
+<div class="flex-grow-1 d-flex flex-column">
+      <!-- Header -->
+      <header class="header">
+        <div
+          class="navbar navbar-light justify-content-between container py-3 px-3"
+        >
+          <a href="" class="fs-4 fw-bolder text-decoration-none">WebRTC</a>
+          <div class="d-flex align-items-center gap-3">
+            <a href="" class="text-primary text-decoration-none">Join</a>
+
+            <span data-toggle="modal" data-target="#exampleModal"
+              ><i class="bi bi-person-fill me-1"></i> Hoàng Anh</span
+            >
+          </div>
+        </div>
+      </header>
+      <!-- End Header -->
+      <!-- Main -->
+      <main class="main d-flex flex-column flex-grow-1">
+        <div
+          class="d-flex flex-column flex-grow-1 justify-content-center align-items-center container py-3 px-3"
+        >
+          <!-- layout video google meet -->
+          <div class="row" style="min-width: 0">
+            <div id="video-grid" class="col-md-4">
+              {{!-- <img src="https://picsum.photos/1000/600" alt="" class="w-100" /> --}}
+            </div>
+            <div id="video-grid" class="col-md-4">
+              
+            </div>
+            <div id="video-grid" class="col-md-4">
+              
+            </div>
+          </div>
+        </div>
+        <!-- Footer -->
+        <footer
+          class="footer container d-flex justify-content-between align-items-center py-4 px-3"
+        >
+          <span>00:00</span>
+          <div class="rounded-pill px-2 py-2 shadow gap-3 d-flex">
+            <div>
+              <button
+                name="btn-camera-off"
+                class="btn-action btn btn-light rounded-circle"
+              >
+                <i class="bi bi-camera-video-fill"></i>
+              </button>
+              <button
+                name="btn-camera-on"
+                class="d-none btn-action btn btn-primary rounded-circle"
+              >
+                <i class="bi bi-camera-video-off-fill"></i>
+              </button>
+            </div>
+            <div>
+              <button
+                name="btn-microphone-off"
+                class="btn-action btn btn-light rounded-circle"
+              >
+                <i class="bi bi-mic-fill"></i>
+              </button>
+              <button
+                name="btn-microphone-on"
+                class="d-none btn-action btn btn-primary rounded-circle"
+              >
+                <i class="bi bi-mic-mute-fill"></i>
+              </button>
+            </div>
+            <!-- <button>Share Screen</button> -->
+            <div>
+              <button
+                name="btn-leave"
+                class="btn-action btn btn-danger rounded-circle"
+              >
+                <i class="bi bi-telephone-x-fill"></i>
+              </button>
+            </div>
+          </div>
+          <div>
+            <button
+              name="btn-participants"
+              class="btn btn-light rounded-circle"
+            >
+              <i class="bi bi-people-fill"></i>
+            </button>
+          </div>
+        </footer>
+        <!-- End Footer -->
+      </main>
+      <!-- End Main -->
+    </div>
+    <!-- Sidebar -->
+    <aside class="d-none sidebar w-25 px-3 py-3">
+      <div class="bg-white h-100 rounded-4 shadow p-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <span class="me-1">Participants </span>
+            <span class="badge bg-secondary">3</span>
+          </div>
+          <button name="btn-close-participants" class="btn fs-5 rounded-circle">
+            <i class="bi bi-x"></i>
+          </button>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Hoàng Anh</li>
+          <li class="list-group-item">Hoàng Anh</li>
+          <li class="list-group-item">Hoàng Anh</li>
+        </ul>
+      </div>
+    </aside>
     
-</div>
