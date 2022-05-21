@@ -1,3 +1,5 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
 <body
     class="d-flex flex-column justify-content-center align-items-center gap-3"
   >
@@ -26,8 +28,11 @@
           placeholder="Enter your name"
         />
       </div>
+      {{#if msg}}
+            <div class="text-center alert alert-danger">{{msg}}</div>
+          {{/if}}
       <button type="submit" class="w-100 btn btn-primary">Join</button>
     </form>
-    <a href="/" class="text-decoration-none"> Create a new meeting </a>
+    <a href="/create" class="text-decoration-none"> Create a new meeting </a>
     <!-- JavaScript Bundle with Popper -->
   </body>

@@ -1,8 +1,94 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100vh;
+  width: 100%;
+  padding: none;
+  margin: 0;
+  background-color: white;
 }
 
-a {
-  color: #00B7FF;
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.chat-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.split {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+
+.user-video {
+  height: auto;
+  width: 70%;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+}
+
+.controls {
+  width: 90%;
+  padding: 12px;
+  display: flex;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.remote-video {
+  width: 100%;
+  height: auto;
+
+}
+
+.remote-video-container {
+  width: 50%;
+  display: flex;
+  margin-top: 5px;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+}
+
+.button {
+  background-color: indigo;
+  color: white;
+  padding: 14px;
+  box-sizing: border-box;
+  font-size: 18px;
+  font-family: tahoma;
+  border: none;
+  border-radius: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 10px;
+  box-sizing: border-box;
+}
+
+.header {
+  background-color: #388580;
+  margin-bottom: 30px;
+}
+
+/* #video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 600px);
+  grid-auto-rows: 400px;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid black;
+} */
