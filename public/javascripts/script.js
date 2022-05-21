@@ -37,9 +37,7 @@ function createPeer(userIdToCall) {
     
     const mediaStream = new MediaStream();
     peer.ontrack = (e) => {
-        mediaStream.addTrack(e.track);
-        
-        
+        mediaStream.addTrack(e.track);  
     }
 
     const container = document.createElement('div');

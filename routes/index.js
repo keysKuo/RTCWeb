@@ -20,32 +20,21 @@ router.get('/join', (req, res) => {
 
 router.post('/join', (req, res) => {
   var username = req.body.username;
-  var roomId = req.body.roomId ? req.body.roomId : req.session.roomId;
-
-  req.session.user = username;
-  req.session.roomId = roomId;
+  var roomId = req.body.roomId;
   
-  console.log(req.body.roomId);
-  
-  if(req.body.roomId) {
-    Rooms.findOneAndUpdate({roomId: req.body.roomId}, {$push: {users: username}}, (err, room) => {
+  Rooms.findOne({roomId: roomId})
+    .then(room => {
       if(!room) {
-        return res.render('join', {msg: `This room doesn't exist`})
+        return res.render('join', {msg: `This room doesn't exist`});
       }
-      return res.redirect('/');
+      else {
+        Rooms.findOneAndUpdate({roomId: req.body.roomId}, {$push: {users: username}}, () => {
+          req.session.user = username;
+          req.session.roomId = roomId;
+          return res.redirect('/');
+        })
+      }
     })
-      
-  }
-
-  else {
-    var newRoom = {
-      roomId: roomId,
-      users: [username]
-    }
-
-    new Rooms(newRoom).save();
-    return res.redirect('/');
-  }
 
 });
 
@@ -59,9 +48,29 @@ router.get('/leave', (req, res) => {
 })
 
 router.get('/create', (req, res) => {
-  req.session.roomId = uuidV4();
   
   return res.render('create');
+})
+
+router.post('/create', (req, res) => {
+  req.session.roomId = uuidV4();
+  
+  Rooms.findOne({roomId: req.session.roomId})
+  .then(room => {
+    if(!room) {
+      req.session.user = req.body.username;
+      var newRoom = {
+        roomId: req.session.roomId,
+        users: [req.body.username]
+      }
+    
+        new Rooms(newRoom).save();
+        return res.redirect('/');
+      }
+      else {
+        return res.redirect('/');
+      }
+    })
 })
 
 router.get('/', function(req, res, next) {
@@ -73,7 +82,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:room', (req, res) => {
-  res.render('room', {username: req.session.user, roomId: req.params.room });
+  return res.render('room', {username: req.session.user, roomId: req.params.room });
 })
 
 module.exports = router;
