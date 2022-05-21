@@ -34,19 +34,26 @@ function createPeer(userIdToCall) {
     });
     peer.onnegotiationneeded = () => userIdToCall ? handleNegotiationNeededEvent(peer, userIdToCall) : null;
     peer.onicecandidate = handleICECandidateEvent;
+    
+    const mediaStream = new MediaStream();
     peer.ontrack = (e) => {
-        const container = document.createElement('div');
-        container.classList.add('remote-video-container');
-        const video = document.createElement('video');
-        video.srcObject = e.streams[0];
-        video.autoplay = true;
-        video.playsInline = true;
-        video.classList.add("remote-video");
-        container.appendChild(video);
+        mediaStream.addTrack(e.track);
         
-        container.id = userIdToCall;
-        remoteVideoContainer.appendChild(container);
+        
     }
+
+    const container = document.createElement('div');
+    container.classList.add('remote-video-container');
+    const video = document.createElement('video');
+    video.srcObject = mediaStream;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.classList.add("remote-video");
+    container.appendChild(video);
+    
+    container.id = userIdToCall;
+    remoteVideoContainer.appendChild(container);
+
     return peer;
 }
 
@@ -125,9 +132,10 @@ function showCam() {
 
 async function init() {
     socket.on('connect', async () => {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const stream = await navigator.mediaDevices.getUserMedia({ audio:true, video: true });
         userStream = stream;
         userVideo.srcObject = stream;
+        userVideo.muted = true;
         socket.emit('user joined room', roomId);
 
         
