@@ -8,6 +8,20 @@ let userStream;
 let isAdmin = false;
 const socket = io('/');
 
+let countTime = new Date().getTime()
+
+var minutes = 0
+var seconds = 0
+var x = setInterval(function() {
+  seconds += 1
+  if (seconds == 60) {
+  	seconds = 0
+    minutes += 1
+  }
+  document.getElementById("countTime").innerHTML = (minutes < 10 ? '0'+minutes:minutes) + ":" + (seconds < 10 ? '0'+seconds:seconds);
+}, 1000);
+
+
 function callOtherUsers(otherUsers, stream) {
     if (!otherUsers.length) {
         isAdmin = true;
@@ -116,8 +130,6 @@ function handleDisconnect(userId) {
 };
 
 
-
-
 function hideCam() {
     const videoTrack = userStream.getTracks().find(track => track.kind === 'video');
     videoTrack.enabled = false;
@@ -138,19 +150,12 @@ async function init() {
 
         
         socket.on('all other users', (otherUsers) => callOtherUsers(otherUsers, stream));
-
         socket.on("connection offer", (payload) => handleReceiveOffer(payload, stream));
-
         socket.on('connection answer', handleAnswer);
-
         socket.on('ice-candidate', handleReceiveIce);
-
         socket.on('user disconnected', (userId) => handleDisconnect(userId));
-
         socket.on('hide cam', hideCam);
-
         socket.on("show cam", showCam);
-
         socket.on('server is full', () => alert("chat is full"));
     });
 }
@@ -210,4 +215,6 @@ function resizeIframe(obj) {
   obj.style.height =
     obj.contentWindow.document.documentElement.scrollHeight + 'px'
 }
+
+
 
